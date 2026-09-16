@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Log Surat - Divisi Produksi I (PP1)</title>
+  <style>
+    html, body { margin:0; padding:0; height:100%; overflow:hidden; background:#F4F6F9; }
+    iframe { border:0; width:100%; height:100vh; height:100dvh; display:block; }
+  </style>
+</head>
+<body>
+  <iframe id="app" allow="clipboard-write"></iframe>
+  <script>
+    var EXEC_URL = "https://script.google.com/macros/s/AKfycbwmrLLmIRIXTJa9nm3PTTsHhOU6JGs1QsdQ7Av1SgiJIxdeuMXYKCrlnjB8TnmQ2qf2Ww/exec";
+    var iframe = document.getElementById('app');
+
+    // Log Surat adalah aplikasi 1 halaman (semua "tab" pindah lewat JavaScript
+    // di dalam halaman, bukan navigasi server) — jadi tidak perlu mekanisme
+    // postMessage untuk navigasi internal. Cukup embed langsung.
+
+    // Samakan tinggi iframe dengan tinggi layar yang benar-benar terlihat di HP,
+    // supaya elemen di bagian bawah (tombol, dsb) tidak terpotong saat address
+    // bar browser HP menyembul/menyusut ketika scroll.
+    function setIframeHeight(){
+      var h = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+      iframe.style.height = h + 'px';
+    }
+    setIframeHeight();
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', setIframeHeight);
+    } else {
+      window.addEventListener('resize', setIframeHeight);
+    }
+
+    iframe.src = EXEC_URL;
+  </script>
+</body>
+</html>
